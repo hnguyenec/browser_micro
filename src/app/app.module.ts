@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
+import { MadlibsService } from './madlibs.service';
 import { SpeechService } from './speech.service';
 import { ListenComponent } from './listen/listen.component';
 
@@ -15,7 +16,8 @@ import { ListenComponent } from './listen/listen.component';
     BrowserModule
   ],
   providers: [
-    SpeechService
+    SpeechService,
+    MadlibsService
   ],
   bootstrap: [AppComponent]
 })
