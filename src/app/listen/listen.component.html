@@ -35,7 +35,8 @@
     <div class="row" *ngIf="errorMsg">
         <div class="col">
             <p class="alert alert-warning">
-                {{errorMsg}}
+                <ng-template [ngIf]="errorMsg">{{errorMsg}}</ng-template>
+                <ng-template [ngIf]="arrayFull">You've already filled in all the available fields for <strong>{{arrayFull}}</strong>.</ng-template>
             </p>
         </div>
     </div>
