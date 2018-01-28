@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { filter, map } from 'rxjs/operators';
 import { Subscription } from 'rxjs/Subscription';
 import { SpeechService } from '../speech.service';
+import { Words } from '../words';
 
 @Component({
   selector: 'app-listen',
@@ -9,9 +10,11 @@ import { SpeechService } from '../speech.service';
   styleUrls: ['./listen.component.scss']
 })
 export class ListenComponent implements OnInit, OnDestroy {
-  nouns: string[];
-  verbs: string[];
-  adjs: string[];
+  nouns: string[] = new Words().array;
+  verbs: string[] = new Words().array;
+  adjs: string[] = new Words().array;
+  arrayFull: string;
+
   nounSub: Subscription;
   verbSub: Subscription;
   adjSub: Subscription;
@@ -48,6 +51,7 @@ export class ListenComponent implements OnInit, OnDestroy {
     .subscribe(
       noun => {
         this._setError();
+        this.nouns = this._updateWords('nouns', this.nouns, noun);
         console.log(`noun: ${noun}`);
       }
     );
@@ -62,6 +66,7 @@ export class ListenComponent implements OnInit, OnDestroy {
     .subscribe(
       verb => {
         this._setError();
+        this.verbs = this._updateWords('verbs', this.verbs, verb);
         console.log(`verb: ${verb}`);
       }
     );
@@ -76,9 +81,30 @@ export class ListenComponent implements OnInit, OnDestroy {
     .subscribe(
       adj => {
         this._setError();
+        this.adjs = this._updateWords('adjectives', this.adjs, adj);
         console.log(`adjective: ${adj}`);
       }
     );
+  }
+
+  private _updateWords(type: string, arr: string[], newWords: string) {
+    const _checkArrayFull = arr.every(item => !!item === true);
+
+    if (_checkArrayFull) {
+      this.arrayFull = type;
+      return arr;
+    } else {
+      let _added = false;
+      this.arrayFull = null;
+      return arr.map(item => {
+        if (!item && !_added) {
+          _added = true;
+          return newWords;
+        } else {
+          return item;
+        }
+      });
+    }
   }
 
   private _listenErrors() {
