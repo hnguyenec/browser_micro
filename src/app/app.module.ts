@@ -7,12 +7,14 @@ import { MadlibsService } from './madlibs.service';
 import { SpeechService } from './speech.service';
 import { ListenComponent } from './listen/listen.component';
 import { WordsFormComponent } from './words-form/words-form.component';
+import { KeyboardComponent } from './keyboard/keyboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListenComponent,
-    WordsFormComponent
+    WordsFormComponent,
+    KeyboardComponent
   ],
   imports: [
     BrowserModule,
