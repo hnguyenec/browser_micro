@@ -52,7 +52,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       noun => {
         this._setError();
         this.nouns = this._updateWords('nouns', this.nouns, noun);
-        console.log(`noun: ${noun}`);
+        // console.log(`noun: ${noun}`);
       }
     );
   }
@@ -67,7 +67,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       verb => {
         this._setError();
         this.verbs = this._updateWords('verbs', this.verbs, verb);
-        console.log(`verb: ${verb}`);
+        // console.log(`verb: ${verb}`);
       }
     );
   }
@@ -82,7 +82,7 @@ export class ListenComponent implements OnInit, OnDestroy {
       adj => {
         this._setError();
         this.adjs = this._updateWords('adjectives', this.adjs, adj);
-        console.log(`adjective: ${adj}`);
+        // console.log(`adjective: ${adj}`);
       }
     );
   }
